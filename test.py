@@ -1,14 +1,15 @@
 import unittest
+from mongo import Mongo
 
-class BasicTestCase(unittest.TestCase):
 
-    def test_true(self):
-        self.assertFalse(not True)
+class TestSuite(unittest.TestCase):
 
-def suite():
-    suite = unittest.TestSuite()
-    suite.addTest(BasicTestCase())
-    return suite
+    def test(self):
+        mongo = Mongo()
+        mongo.populate()
+        things = mongo.count()
+        self.failIf(things != 5)
+
 
 def main():
     unittest.main()
